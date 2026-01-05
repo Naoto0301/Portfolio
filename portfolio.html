@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポートフォリオ</title>
+    <title>ゲームプログラマー ポートフォリオ</title>
     <style>
         * {
             margin: 0;
@@ -32,27 +32,6 @@
             pointer-events: none;
             z-index: 1;
             background: transparent;
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes fallSlow {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        @keyframes fallFast {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
         }
 
         @keyframes flicker {
@@ -104,6 +83,13 @@
         @keyframes gameOverFlash {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .falling-symbol {
@@ -773,4 +759,87 @@
                         <span class="game-tech-tag">2D</span>
                     </div>
                     <span class="game-badge">LEVEL: ★★★☆☆</span>
-                    <p class="game-description
+                    <p class="game-description">ブロック消し型パズルゲーム。ユーザーインターフェース、ゲームロジック、データ保存機能を実装しました。</p>
+                    <p class="game-role">役割: プログラマー（UI・システム担当）</p>
+                    <div class="achievement">完成度: 92%</div>
+                </div>
+
+                <div class="game-card">
+                    <h3 class="game-title">Multiplayer Battle</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">Unity</span>
+                        <span class="game-tech-tag">C#</span>
+                        <span class="game-tech-tag">Networking</span>
+                    </div>
+                    <span class="game-badge">LEVEL: ★★★★★</span>
+                    <p class="game-description">ネットワーク対応型マルチプレイゲーム。通信プロトコル実装とゲームロジック同期を担当しました。</p>
+                    <p class="game-role">役割: ネットワークプログラマー</p>
+                    <div class="achievement">完成度: 85%</div>
+                </div>
+
+                <div class="game-card">
+                    <h3 class="game-title">RPG Prototype</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">Unreal Engine</span>
+                        <span class="game-tech-tag">C++</span>
+                        <span class="game-tech-tag">3D</span>
+                    </div>
+                    <span class="game-badge">LEVEL: ★★★★☆</span>
+                    <p class="game-description">RPG風プロトタイプゲーム。キャラクターシステム、インベントリ管理、クエストシステムを実装しました。</p>
+                    <p class="game-role">役割: メインプログラマー</p>
+                    <div class="achievement">完成度: 80%</div>
+                </div>
+
+                <div class="game-card">
+                    <h3 class="game-title">Action Adventure</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">Unity</span>
+                        <span class="game-tech-tag">C#</span>
+                        <span class="game-tech-tag">3D</span>
+                    </div>
+                    <p class="game-description">アクションアドベンチャーゲーム。プレイヤー制御、敵AI、ステージ管理システムを実装しました。</p>
+                    <p class="game-role">役割: プログラマー（AI・物理担当）</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p class="footer-text">▓▓▓ GAME PROGRAMMER PORTFOLIO ▓▓▓</p>
+        <p class="footer-text status">⚠ DEVELOPMENT IN PROGRESS ⚠</p>
+        <p class="footer-text">// CREATE AMAZING GAMES //</p>
+    </footer>
+
+    <script>
+        function createFallingSymbol() {
+            const symbols = ['✕', '◯', '◇'];
+            const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            const div = document.createElement('div');
+            const symbolClass = symbol === '✕' ? 'cross' : symbol === '◯' ? 'circle' : 'diamond';
+            div.className = `falling-symbol ${symbolClass}`;
+            div.textContent = symbol;
+            
+            const leftPos = Math.random() * window.innerWidth;
+            const duration = 3 + Math.random() * 4;
+            const delay = Math.random() * 0.5;
+            
+            div.style.left = leftPos + 'px';
+            div.style.top = '-50px';
+            div.style.animation = `fall ${duration}s linear ${delay}s forwards`;
+            
+            document.body.appendChild(div);
+            
+            setTimeout(() => {
+                div.remove();
+            }, (duration + delay) * 1000);
+        }
+        
+        // 初期生成
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => createFallingSymbol(), i * 200);
+        }
+        
+        // 連続生成
+        setInterval(createFallingSymbol, 500);
+    </script>
