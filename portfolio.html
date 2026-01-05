@@ -1,9 +1,14 @@
-<!DOCTYPE html>
+</head>
+<body>
+    <header><!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポートフォリオ</title>
+    <title>ゲームプログラマー ポートフォリオ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,7 +21,7 @@
         body {
             background: #0a0014;
             color: #00ffff;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: 'DotGothic16', 'JetBrains Mono', monospace;
             letter-spacing: 2px;
             overflow-x: hidden;
             position: relative;
@@ -75,11 +80,6 @@
             100% { transform: translateY(100%); }
         }
 
-        @keyframes scan {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
         @keyframes pixelFlicker {
             0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #0099ff; }
             50% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #0099ff; }
@@ -88,6 +88,36 @@
         @keyframes gameOverFlash {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+
+
+        .falling-symbol {
+            position: fixed;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 153, 255, 0.6);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .falling-symbol.cross {
+            color: #00ffff;
+        }
+
+        .falling-symbol.circle {
+            color: #0099ff;
+        }
+
+        .falling-symbol.diamond {
+            color: #00ffff;
         }
 
         header {
@@ -568,14 +598,13 @@
     </style>
 </head>
 <body>
-    <header>
         <div class="header-content">
-            <h1>GAME DEV</h1>
-            <p class="subtitle">// GAME PROGRAMMER PORTFOLIO /</p>
+            <h1>ゲーム開発</h1>
+            <p class="subtitle">// ゲームプログラマー ポートフォリオ //</p>
             <div class="status-bar">
-                <div class="status-item">GOAL: <span>GAME PROGRAMMER</span></div>
-                <div class="status-item">STATUS: <span>ACTIVE</span></div>
-                <div class="status-item">MODE: <span>DEVELOPMENT</span></div>
+                <div class="status-item">目標: <span>ゲームプログラマー</span></div>
+                <div class="status-item">ステータス: <span>活動中</span></div>
+                <div class="status-item">モード: <span>開発中</span></div>
             </div>
         </div>
     </header>
@@ -749,4 +778,75 @@
                         <span class="game-tech-tag">Networking</span>
                     </div>
                     <span class="game-badge">LEVEL: ★★★★★</span>
-                    <p class="game-description">ネットワーク対応型マルチプレイゲ
+                    <p class="game-description">ネットワーク対応型マルチプレイゲーム。通信プロトコル実装とゲームロジック同期を担当しました。</p>
+                    <p class="game-role">役割: ネットワークプログラマー</p>
+                    <div class="achievement">完成度: 85%</div>
+                </div>
+
+                <div class="game-card">
+                    <h3 class="game-title">RPG Prototype</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">Unreal Engine</span>
+                        <span class="game-tech-tag">C++</span>
+                        <span class="game-tech-tag">3D</span>
+                    </div>
+                    <span class="game-badge">LEVEL: ★★★★☆</span>
+                    <p class="game-description">RPG風プロトタイプゲーム。キャラクターシステム、インベントリ管理、クエストシステムを実装しました。</p>
+                    <p class="game-role">役割: メインプログラマー</p>
+                    <div class="achievement">完成度: 80%</div>
+                </div>
+
+                <div class="game-card">
+                    <h3 class="game-title">Action Adventure</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">Unity</span>
+                        <span class="game-tech-tag">C#</span>
+                        <span class="game-tech-tag">3D</span>
+                    </div>
+                    <p class="game-description">アクションアドベンチャーゲーム。プレイヤー制御、敵AI、ステージ管理システムを実装しました。</p>
+                    <p class="game-role">役割: プログラマー（AI・物理担当）</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p class="footer-text">▓▓▓ ゲームプログラマー ポートフォリオ ▓▓▓</p>
+        <p class="footer-text status">⚠ 開発進行中 ⚠</p>
+        <p class="footer-text">// 素晴らしいゲームを作る //</p>
+    </footer>
+
+    <script>
+        // 落ちる図形のアニメーション
+        function createFallingSymbol() {
+            const symbols = ['✕', '◯', '◇'];
+            const symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            
+            const div = document.createElement('div');
+            const symbolClass = symbol === '✕' ? 'cross' : symbol === '◯' ? 'circle' : 'diamond';
+            div.className = `falling-symbol ${symbolClass}`;
+            div.textContent = symbol;
+            
+            const leftPos = Math.random() * window.innerWidth;
+            const duration = 3 + Math.random() * 4;
+            const delay = Math.random() * 0.5;
+            
+            div.style.left = leftPos + 'px';
+            div.style.top = '-50px';
+            div.style.animation = `fall ${duration}s linear ${delay}s forwards`;
+            
+            document.body.appendChild(div);
+            
+            setTimeout(() => {
+                div.remove();
+            }, (duration + delay) * 1000);
+        }
+        
+        // 初期生成
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => createFallingSymbol(), i * 200);
+        }
+        
+        // 連続生成
+        setInterval(createFallingSymbol, 500);
+    </script>
