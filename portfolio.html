@@ -34,6 +34,27 @@
             background: transparent;
         }
 
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fallSlow {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fallFast {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
         @keyframes flicker {
             0% { opacity: 0.97; transform: scaleY(0.99); }
             50% { opacity: 1; transform: scaleY(1); }
@@ -75,11 +96,6 @@
             100% { transform: translateY(100%); }
         }
 
-        @keyframes scan {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
-        }
-
         @keyframes pixelFlicker {
             0%, 100% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #0099ff; }
             50% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 15px #0099ff; }
@@ -88,6 +104,27 @@
         @keyframes gameOverFlash {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
+        }
+
+        .falling-symbol {
+            position: fixed;
+            font-size: 3em;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 153, 255, 0.6);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .falling-symbol.cross {
+            color: #00ffff;
+        }
+
+        .falling-symbol.circle {
+            color: #0099ff;
+        }
+
+        .falling-symbol.diamond {
+            color: #00ffff;
         }
 
         header {
@@ -736,17 +773,4 @@
                         <span class="game-tech-tag">2D</span>
                     </div>
                     <span class="game-badge">LEVEL: ★★★☆☆</span>
-                    <p class="game-description">ブロック消し型パズルゲーム。ユーザーインターフェース、ゲームロジック、データ保存機能を実装しました。</p>
-                    <p class="game-role">役割: プログラマー（UI・システム担当）</p>
-                    <div class="achievement">完成度: 92%</div>
-                </div>
-
-                <div class="game-card">
-                    <h3 class="game-title">Multiplayer Battle</h3>
-                    <div class="game-tech">
-                        <span class="game-tech-tag">Unity</span>
-                        <span class="game-tech-tag">C#</span>
-                        <span class="game-tech-tag">Networking</span>
-                    </div>
-                    <span class="game-badge">LEVEL: ★★★★★</span>
-                    <p class="game-description">ネットワーク対応型マルチプレイゲ
+                    <p class="game-description
