@@ -649,6 +649,37 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        .profile-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0, 255, 255, 0.05);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .profile-table th, .profile-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #00ffff;
+        }
+
+        .profile-table th {
+            background-color: rgba(0, 153, 255, 0.3);
+            color: #00ffff;
+            font-weight: bold;
+            width: 25%;
+            text-shadow: 0 0 5px #00ffff;
+        }
+
+        .profile-table td {
+            background-color: rgba(0, 255, 255, 0.02);
+            color: #88ddff;
+        }
+
+        .profile-table tr:hover td {
+            background-color: rgba(0, 255, 255, 0.08);
+        }
     </style>
 </head>
 <body>
@@ -677,9 +708,10 @@
             
             <div class="profile-section">
                 <div class="profile-images">
-                     <div class="profile-img"><img src="img/画像1.jpg" alt="画像1"></div>
-                     <div class="profile-img"><img src="img/画像2.jpg" alt="画像2"></div>
-                     <div class="profile-img"><img src="img/画像3.jpg" alt="画像3"></div>
+
+                    <div class="profile-img"><img src="img/画像1.jpg" alt="画像1"></div>
+                    <div class="profile-img"><img src="img/画像2.jpg" alt="画像2"></div>
+                    <div class="profile-img"><img src="img/画像3.jpg" alt="画像3"></div>
                 </div>
                 
                 <div class="profile-text">
@@ -698,6 +730,33 @@
                     <p>コードや仕組みでチームやプレイヤーに貢献することを意識し、チームでの一体感と安心感を大切にしながら、プレイヤーの人生に残るようなゲームを作れるプログラマー、そしてデバッカーを目指しています。</p>
                 </div>
             </div>
+
+            <table class="profile-table">
+                <tr>
+                    <th>生年月日</th>
+                    <td>2006年3月1日</td>
+                </tr>
+                <tr>
+                    <th>学校</th>
+                    <td>横浜デジタルアーツ専門学校</td>
+                </tr>
+                <tr>
+                    <th>志望</th>
+                    <td>プログラマー</td>
+                </tr>
+                <tr>
+                    <th>趣味</th>
+                    <td>ゲーム/アニメ鑑賞/映画鑑賞/空手</td>
+                </tr>
+                <tr>
+                    <th>好きなゲーム</th>
+                    <td>Apex Legends/Battlefield5/鳴朝/Cyberpunk 2077/FINALFANTASY シリーズ/MONSTERHUNTERシリーズ/グランド・セフト・オートⅥ/ワイルドハーツ/VALORANT</td>
+                </tr>
+                <tr>
+                    <th>その他の活動</th>
+                    <td>ゲーム制作サークル/e-sportsサークル/コスプレサークル/学生自治会/空手(10年)</td>
+                </tr>
+            </table>
 
             <div class="intro-grid">
                 <div class="intro-card">
@@ -723,8 +782,7 @@
                     <div class="skill-list">
                         <span class="skill">C#</span>
                         <span class="skill">C++</span>
-                        <span class="skill">Java</span>
-                        <span class="skill">Python</span>
+
                     </div>
                 </div>
 
@@ -733,16 +791,13 @@
                     <div class="skill-list">
                         <span class="skill">Unity</span>
                         <span class="skill">Unreal Engine</span>
-                        <span class="skill">GameMaker</span>
                     </div>
                 </div>
 
                 <div class="skill-category">
                     <h3>グラフィックス</h3>
                     <div class="skill-list">
-                        <span class="skill">OpenGL</span>
-                        <span class="skill">DirectX</span>
-                        <span class="skill">Shader</span>
+                        <span class="skill">DXlib</span>
                     </div>
                 </div>
 
