@@ -1,6 +1,4 @@
-</head>
-<body>
-    <header><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -97,11 +95,9 @@
             }
         }
 
-
-
         .falling-symbol {
             position: fixed;
-            font-size: 3em;
+            font-size: 1.5em;
             font-weight: bold;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 153, 255, 0.6);
             pointer-events: none;
@@ -293,6 +289,60 @@
             line-height: 1.8;
             font-size: 0.95em;
             margin-bottom: 20px;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 40px;
+            border: 2px solid #00ffff;
+            border-radius: 12px;
+            padding: 30px;
+            background: rgba(0, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .profile-images {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .profile-img {
+            width: 100%;
+            aspect-ratio: 1;
+            border: 2px solid #00ffff;
+            border-radius: 8px;
+            overflow: hidden;
+            background: rgba(0, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .profile-img:hover {
+            border-color: #0099ff;
+            box-shadow: 0 0 25px rgba(0, 153, 255, 0.5);
+            transform: translateY(-5px);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-text {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-text p {
+            color: #88ddff;
+            line-height: 1.8;
+            font-size: 0.9em;
         }
 
         .intro-grid {
@@ -594,10 +644,15 @@
             .games-grid {
                 grid-template-columns: 1fr;
             }
+
+            .profile-section {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <header>
         <div class="header-content">
             <h1>ゲーム開発</h1>
             <p class="subtitle">// ゲームプログラマー ポートフォリオ //</p>
@@ -610,32 +665,52 @@
     </header>
 
     <nav>
-        <a href="#intro">自己紹介</a>
+        <a href="#profile">人物紹介</a>
         <a href="#skills">スキル・資格</a>
         <a href="#events">イベント参加</a>
         <a href="#games">作品紹介</a>
     </nav>
 
     <div class="container">
-        <section id="intro" class="section">
-            <h2 class="section-title">[ 自己紹介 ]</h2>
-            <p class="intro-text">
-                ゲームプログラマーを目指す学生です。ゲーム開発における問題解決能力とプログラミング技術を磨いています。
-                チームプロジェクトでの経験を通じて、コミュニケーション能力と協調性を培っています。
-                ゲーム業界での活躍を目標に、日々スキルアップに取り組んでいます。
-            </p>
+        <section id="profile" class="section">
+            <h2 class="section-title">[ 人物紹介 ]</h2>
+            
+            <div class="profile-section">
+                <div class="profile-images">
+                    <div class="profile-img"><img src="data:image/svg+xml,%3Csvg xmlns='img/画像1.jpg' width='300' height='300'%3E%3Crect fill='%23223344' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%2300ffff' text-anchor='middle' dominant-baseline='middle'%3E画像1%3C/text%3E%3C/svg%3E" alt="画像1"></div>
+                    <div class="profile-img"><img src="data:image/svg+xml,%3Csvg xmlns='img/画像2.jpg' width='300' height='300'%3E%3Crect fill='%23223344' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%2300ffff' text-anchor='middle' dominant-baseline='middle'%3E画像2%3C/text%3E%3C/svg%3E" alt="画像2"></div>
+                    <div class="profile-img"><img src="data:image/svg+xml,%3Csvg xmlns='img/画像3.jpg' width='300' height='300'%3E%3Crect fill='%23223344' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='20' fill='%2300ffff' text-anchor='middle' dominant-baseline='middle'%3E画像3%3C/text%3E%3C/svg%3E" alt="画像3"></div>
+                </div>
+                
+                <div class="profile-text">
+                    <p>私は、ゲームに出会って仲間と協力することの大切さを知り、プレイヤーに単に楽しいや嬉しいと感じてもらうだけでなく、「このゲームを遊んだ時間は幸せだった」「あの時代はよかった」と思い出に残るような体験を届けたいと思うようになりました。</p>
+                    
+                    <p>そのために、チームで協力してゲームを完成させることにやりがいを感じ、裏方として仲間が作業しやすい環境を整えつつ、プログラミングを通してゲームの挙動を思い通りに動かすことに力を入れています。</p>
+                    
+                    <p>また、スキルや知識を広げるため、CEDECや東京ゲームショウ、キャリアクエストなどさまざまなイベントにも参加し、最新のゲーム業界や開発手法に触れるよう努めています。</p>
+                </div>
+            </div>
+
+            <div class="profile-section" style="grid-template-columns: 1fr;">
+                <div class="profile-text">
+                    <p>さらに、品質面からも作品を支えたいと考え、デバッカーとしての役割にも強い関心を持っています。プレイヤーに安心して楽しんでもらえるよう、バグを見つけ出し改善に繋げることを通して、チームや作品全体の完成度を高めていきたいと考えています。</p>
+                    
+                    <p>コードや仕組みでチームやプレイヤーに貢献することを意識し、チームでの一体感と安心感を大切にしながら、プレイヤーの人生に残るようなゲームを作れるプログラマー、そしてデバッカーを目指しています。</p>
+                </div>
+            </div>
+
             <div class="intro-grid">
                 <div class="intro-card">
-                    <h3>◆ 学習背景</h3>
-                    <p>ゲーム開発の基礎から応用まで、実践的なプログラミング教育を受けています。</p>
+                    <h3>◆ ゲーム開発への想い</h3>
+                    <p>プレイヤーの人生に残るような体験を届けることを最優先に、チームと一緒にゲーム完成を目指しています。</p>
                 </div>
                 <div class="intro-card">
-                    <h3>◆ 開発経験</h3>
-                    <p>複数のゲームプロジェクトに参加し、実装からデバッグまでの経験を積んでいます。</p>
+                    <h3>◆ チームでの貢献</h3>
+                    <p>裏方としてチーム環境を整え、プログラミング技術で仲間をサポート。品質確保にも力を入れています。</p>
                 </div>
                 <div class="intro-card">
-                    <h3>◆ 目標</h3>
-                    <p>ゲーム業界で最前線に立つプログラマーとして、ユーザーに感動を届けたいです。</p>
+                    <h3>◆ 継続的な成長</h3>
+                    <p>業界イベント参加やスキル習得を通じて、最新の開発技術と知識を常に追求しています。</p>
                 </div>
             </div>
         </section>
@@ -850,3 +925,5 @@
         // 連続生成
         setInterval(createFallingSymbol, 500);
     </script>
+</body>
+</html>
