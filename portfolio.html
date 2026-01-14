@@ -11,17 +11,18 @@
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <h1>ゲーム開発</h1>
-            <p class="subtitle">// ゲームプログラマー ポートフォリオ //</p>
-            <div class="status-bar">
-                <div class="status-item">目標: <span>ゲームプログラマー</span></div>
-                <div class="status-item">ステータス: <span>活動中</span></div>
-                <div class="status-item">モード: <span>開発中</span></div>
-            </div>
+    <div class="header-content">
+        <div class="header-title"><img src="img/アイコン.png" alt="ゲームアイコン" class="header-icon">
+            <h1>小田島直斗</h1>
         </div>
-    </header>
-
+        <p class="subtitle">// ゲームプログラマー目指してます //</p>
+        <div class="status-bar">
+            <div class="status-item">目標: <span>ゲームプログラマー</span></div>
+            <div class="status-item">ステータス: <span>活動中</span></div>
+            <div class="status-item">モード: <span>開発中</span></div>
+        </div>
+    </div>
+   </header>
     <nav>
         <a href="#profile">人物紹介</a>
         <a href="#skills">スキル・資格</a>
@@ -48,31 +49,31 @@
                     <p>また、スキルや知識を広げるため、CEDECや東京ゲームショウ、キャリアクエストなどさまざまなイベントにも参加し、最新のゲーム業界や開発手法に触れるよう努めています。</p>
 
                     <table class="profile-table">
-                <tr>
-                    <th>生年月日</th>
-                    <td>2006年3月1日</td>
-                </tr>
-                <tr>
-                    <th>学校</th>
-                    <td>横浜デジタルアーツ専門学校</td>
-                </tr>
-                <tr>
-                    <th>志望</th>
-                    <td>プログラマー</td>
-                </tr>
-                <tr>
-                    <th>趣味</th>
-                    <td>ゲーム/アニメ鑑賞/映画鑑賞/空手</td>
-                </tr>
-                <tr>
-                    <th>好きなゲーム</th>
-                    <td>Apex Legends / Battlefield5 / 鳴朝 / Cyberpunk 2077 / FINAL FANTASY シリーズ</td>
-                </tr>
-                <tr>
-                    <th>その他の活動</th>
-                    <td>ゲーム制作サークル / e-sportsサークル / コスプレサークル / 学生自治会 / 空手(10年)</td>
-                </tr>
-            </table>
+                        <tr>
+                            <th>生年月日</th>
+                            <td>2006年3月1日</td>
+                        </tr>
+                        <tr>
+                            <th>学校</th>
+                            <td>横浜デジタルアーツ専門学校</td>
+                        </tr>
+                        <tr>
+                            <th>志望</th>
+                            <td>プログラマー</td>
+                        </tr>
+                        <tr>
+                            <th>趣味</th>
+                            <td>ゲーム/アニメ鑑賞/映画鑑賞/空手</td>
+                        </tr>
+                        <tr>
+                            <th>好きなゲーム</th>
+                            <td>Apex Legends / Battlefield5 / 鳴朝 / Cyberpunk 2077 / FINAL FANTASY シリーズ</td>
+                        </tr>
+                        <tr>
+                            <th>その他の活動</th>
+                            <td>ゲーム制作サークル / e-sportsサークル / コスプレサークル / 学生自治会 / 空手(10年)</td>
+                        </tr>
+                    </table>
 
                 </div>
             </div>
@@ -349,8 +350,9 @@
                         <span class="game-tech-tag">C++</span>
                         <span class="game-tech-tag">2D Action</span>
                     </div>
-                    <div class="game-image-container">
-                        <img src="img/画像13.png" alt="REFLECT LINE" class="game-image">
+                    <div class="game-video-section">
+                        <h4 class="game-video-title">▶ ゲームプレイ動画</h4>
+                        <iframe class="game-video" src="https://www.youtube.com/embed/5QUpdI0Ifis" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                     <p class="game-description">レーザーや障害物を避ける2Dアクションゲーム！アイテムを取ると反射モードが発動し、受けたレーザーを跳ね返して隕石に追尾・破壊、スコアを稼いでハイスコア更新を目指すゲームです。</p>
                     <div class="game-details">
@@ -385,17 +387,153 @@
                     </div>
                     <div class="game-links">
                         <a href="https://github.com/Naoto0301/2GM_shinkyu_z01" target="_blank" class="game-link">GitHub</a>
-                        <a href="https://youtu.be/-UtEUoFr8mE" target="_blank" class="game-link video-link">動画を確認</a>
                     </div>
                 </div>
-            </div>
+
+                <div class="game-card featured-game">
+                    <h3 class="game-title">Gunaction</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">アンリアルエンジン5</span>
+                        <span class="game-tech-tag">C++</span>
+                        <span class="game-tech-tag">3D Action</span>
+                    </div>
+                    <div class="game-video-section">
+                        <h4 class="game-video-title">▶メイン</h4>
+                        <!--<iframe class="game-video" src="https://www.youtube.com/embed/5QUpdI0Ifis" allowfullscreen="" loading="lazy"></iframe>-->
+                        <img class="game-video" src="img/展示画像.png" allowfullscreen="" loading="lazy"></img>
+                    </div>
+                    <p class="game-description">Unreal Engine 5を使用した3Dアクションゲームとなっております銃と剣を使い敵を倒していく</p>
+                    <div class="game-details">
+                        <div class="detail-item">
+                            <span class="detail-label">プラットフォーム:</span>
+                            <span class="detail-value">Windows</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作環境:</span>
+                            <span class="detail-value">Unreal Engine 5/C++</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作期間:</span>
+                            <span class="detail-value">2025/10月～開発中</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作人数:</span>
+                            <span class="detail-value">2人</span>
+                        </div>
+                    </div>
+                    <div class="game-highlights">
+                        <div class="highlight-title">アピールポイント</div>
+                        <ul class="highlight-list">
+                            <li>Unreal Engine 5/c++</li>
+                            <li>プレイヤー全体移動処理</li>
+                            <li>レーザー反射処理</li>
+                            <li>波紋障害物の作成・使いやすいクラス設計</li>
+                        </ul>
+                    </div>
+                    <div class="game-role">
+                        <strong>役割:</strong> playerの移動処理やアニメーション設定、マップ作製を担当
+                    </div>
+                    <div class="game-links">
+                        <a href="https://github.com/Naoto0301/2GM_shinkyu_kouki02" target="_blank" class="game-link">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="game-card featured-game">
+                    <h3 class="game-title">帰宅侍</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">Unity</span>
+                        <span class="game-tech-tag">C#</span>
+                        <span class="game-tech-tag">2Dアクション</span>
+                    </div>
+                    <div class="game-video-section">
+                        <h4 class="game-video-title">▶ ゲームプレイ動画</h4>
+                        <iframe class="game-video" src="https://www.youtube.com/embed/jAy3YGec2mI" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <p class="game-description">2D横スクロールアクションランゲーム（ステージクリア制）仕事帰りの侍が、竹藪を通って家に帰る途中、突如現れるお化けたちに襲われる。ワイヤーアクションと剣術を駆使して、襲いかかる敵を倒しながら竹藪を突破し、ステージをクリアしていこう。果たして侍は無事に家に帰れるのか？</p>
+                    <div class="game-details">
+                        <div class="detail-item">
+                            <span class="detail-label">プラットフォーム:</span>
+                            <span class="detail-value">Windows</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作環境:</span>
+                            <span class="detail-value">Unity</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作期間:</span>
+                            <span class="detail-value">2025/7/11～2025/7/19</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作人数:</span>
+                            <span class="detail-value">1人</span>
+                        </div>
+                    </div>
+                    <div class="game-highlights">
+                        <div class="highlight-title">アピールポイント</div>
+                        <ul class="highlight-list">
+                            <li>ワイヤー移動</li>
+                            <li>わかりやすいコード</li>
+                            <li>UI処理</li>
+                        </ul>
+                    </div>
+                    <div class="game-role">
+                        <strong>役割:</strong> プレイヤー移動処理・ワイヤー移動処理・攻撃処理・敵の移動処理・UI処理
+                    </div>
+                    <div class="game-links">
+                        <a href="https://unityroom.com/games/kitaku " target="_blank" class="game-link">Unityルームでプレイできます</a>
+                    </div>
+                </div>
+
+                 <div class="game-card featured-game">
+                    <h3 class="game-title">PENTACORE</h3>
+                    <div class="game-tech">
+                        <span class="game-tech-tag">Unity</span>
+                        <span class="game-tech-tag">C#</span>
+                        <span class="game-tech-tag">2Dアクション</span>
+                    </div>
+                    <div class="game-video-section">
+                        <h4 class="game-video-title">▶ ゲームプレイ動画</h4>
+                        <iframe class="game-video" src="https://www.youtube.com/embed/ErcRpzGMLGE" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <p class="game-description">ゲームジャンムと呼ばれる3日間ので作成したゲームですこの作品は最優秀賞をとることが出来ました</p>
+                    <div class="game-details">
+                        <div class="detail-item">
+                            <span class="detail-label">プラットフォーム:</span>
+                            <span class="detail-value">Windows</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作環境:</span>
+                            <span class="detail-value">>Unity</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作期間:</span>
+                            <span class="detail-value">2024/8/9～2024/8/11</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">制作人数:</span>
+                            <span class="detail-value">5人</span>
+                        </div>
+                    </div>
+                    <div class="game-highlights">
+                        <div class="highlight-title">アピールポイント</div>
+                        <ul class="highlight-list">
+                            <li>stage3の敵の動作</li>
+                            <li>プレイヤー全体移動処理</li>
+                            <li>敵の攻撃の行処理</li>
+                            <li>stage3内でのUI処理</li>
+                        </ul>
+                    </div>
+                    <div class="game-role">
+                        <strong>役割:</strong> ステージ3内の全体の処理
+                    </div>
+                    <div class="game-links">
+                        <a href="https://unityroom.com/games/pentacore" target="_blank" class="game-link">Unityルームでプレイできます</a>
+                    </div>
         </section>
     </div>
 
     <footer>
         <p class="footer-text">▓▓▓ ゲームプログラマー ポートフォリオ ▓▓▓</p>
-        <p class="footer-text">⚠ 開発進行中 ⚠</p>
-        <p class="footer-text">// 素晴らしいゲームを作る //</p>
     </footer>
 
     <script src="js/script.js"></script>

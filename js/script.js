@@ -32,7 +32,9 @@ for (let i = 0; i < 5; i++) {
 // 連続生成
 setInterval(createFallingSymbol, 500);
 
+// ======================================
 // アコーディオン機能（イベント）
+// ======================================
 function initializeEventAccordion() {
     const eventHeaders = document.querySelectorAll('.event-header');
     
@@ -49,21 +51,30 @@ function initializeEventAccordion() {
     });
 }
 
+// ======================================
 // スキル・資格セクション全体のアコーディオン
+// ======================================
 function initializeSectionAccordion() {
     const skillsSection = document.getElementById('skills');
+    if (!skillsSection) return;
+    
     const skillsContent = skillsSection.querySelector('.section-accordion');
+    if (!skillsContent) return;
+    
     const skillsHeader = skillsContent.querySelector('.section-accordion-header');
     
-    skillsHeader.addEventListener('click', function() {
-        skillsContent.classList.toggle('collapsed');
-    });
-
-    // 初期状態：収縮
-    skillsContent.classList.add('collapsed');
+    if (skillsHeader) {
+        skillsHeader.addEventListener('click', function() {
+            skillsContent.classList.toggle('collapsed');
+        });
+        // 初期状態：収縮
+        skillsContent.classList.add('collapsed');
+    }
 }
 
+// ======================================
 // アコーディオン機能（資格）
+// ======================================
 function initializeCertificationAccordion() {
     const certHeaders = document.querySelectorAll('.certification-header');
     
@@ -80,7 +91,9 @@ function initializeCertificationAccordion() {
     });
 }
 
+// ======================================
 // スライド機能
+// ======================================
 function changeSlide(button, direction) {
     const slider = button.closest('.image-slider');
     const images = slider.querySelectorAll('.slider-image');
@@ -106,12 +119,33 @@ function changeSlide(button, direction) {
     slider.querySelector('.next-btn').disabled = currentIndex === images.length - 1;
 }
 
+// ======================================
+// スキルカテゴリーのアコーディオン
+// ======================================
+function initializeSkillCategories() {
+    const skillCategories = document.querySelectorAll('.skill-category');
+    
+    skillCategories.forEach(category => {
+        const header = category.querySelector('h3');
+        if (header) {
+            header.addEventListener('click', function() {
+                category.classList.toggle('collapsed');
+            });
+        }
+    });
+}
+
+// ======================================
 // ページロード時の初期化
+// ======================================
 window.addEventListener('load', () => {
+    // 各アコーディオンの初期化
     initializeEventAccordion();
     initializeSectionAccordion();
     initializeCertificationAccordion();
+    initializeSkillCategories();
     
+    // スライダーの初期化
     document.querySelectorAll('.image-slider').forEach(slider => {
         const images = slider.querySelectorAll('.slider-image');
         slider.querySelector('.prev-btn').disabled = true;
