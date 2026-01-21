@@ -1132,3 +1132,64 @@ h1 {
         font-size: 0.75em;
     }
 }
+@media (max-width: 768px) {
+    /* ナビゲーションを上に移動 */
+    nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        flex-wrap: wrap;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(10, 0, 20, 0.95) 0%, rgba(10, 0, 20, 0.85) 100%);
+        border-bottom: 2px solid #00ffff;
+    }
+
+    nav a {
+        padding: 8px 15px;
+        font-size: 0.7em;
+        border: 1px solid #00ffff;
+    }
+
+    /* ヘッダーのトップマージンを調整 */
+    header {
+        margin-top: 70px;
+        padding: 30px 15px;
+    }
+
+    /* h1のフォントサイズを縮小 */
+    h1 {
+        font-size: 1.5em;
+        margin: 0;
+        word-break: break-word;
+    }
+
+    .header-title {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .subtitle {
+        font-size: 0.75em;
+        margin-bottom: 15px;
+    }
+
+    .status-bar {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .status-item {
+        padding: 8px 15px;
+        font-size: 0.7em;
+    }
+}
