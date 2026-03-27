@@ -1165,3 +1165,21 @@ h1 {
     border: none;
     border-radius: 6px;
 }
+@media (max-width: 480px) {
+    .header-title {
+        white-space: nowrap;
+    }
+
+    .header-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .header-title h1 {
+        font-size: 1.6em;
+    }
+     .subtitle {
+        font-size: 0.7em;
+        letter-spacing: 1px;
+    }
+}
