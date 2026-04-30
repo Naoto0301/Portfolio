@@ -1,24 +1,26 @@
+// ======================================
 // 落ちる図形のアニメーション（背景）
+// ======================================
 function createFallingSymbol() {
     const symbols = ['✕', '◯', '◇'];
     const symbol = symbols[Math.floor(Math.random() * symbols.length)];
-    
+
     const div = document.createElement('div');
     const symbolClass = symbol === '✕' ? 'cross' : symbol === '◯' ? 'circle' : 'diamond';
     div.className = `falling-symbol ${symbolClass}`;
     div.textContent = symbol;
-    
+
     const leftPos = Math.random() * window.innerWidth;
     const duration = 3 + Math.random() * 4;
     const delay = Math.random() * 0.5;
-    
+
     div.style.left = leftPos + 'px';
     div.style.top = '-50px';
     div.style.animation = `fall ${duration}s linear ${delay}s forwards`;
     div.style.zIndex = '1';
-    
+
     document.body.appendChild(div);
-    
+
     setTimeout(() => {
         div.remove();
     }, (duration + delay) * 1000);
@@ -37,9 +39,9 @@ setInterval(createFallingSymbol, 500);
 // ======================================
 function initializeEventAccordion() {
     const eventHeaders = document.querySelectorAll('.event-header');
-    
+
     eventHeaders.forEach(header => {
-        header.addEventListener('click', function() {
+        header.addEventListener('click', function () {
             const section = this.closest('.event-detail-section');
             section.classList.toggle('collapsed');
         });
@@ -57,14 +59,14 @@ function initializeEventAccordion() {
 function initializeSectionAccordion() {
     const skillsSection = document.getElementById('skills');
     if (!skillsSection) return;
-    
+
     const skillsContent = skillsSection.querySelector('.section-accordion');
     if (!skillsContent) return;
-    
+
     const skillsHeader = skillsContent.querySelector('.section-accordion-header');
-    
+
     if (skillsHeader) {
-        skillsHeader.addEventListener('click', function() {
+        skillsHeader.addEventListener('click', function () {
             skillsContent.classList.toggle('collapsed');
         });
         // 初期状態：収縮
@@ -77,9 +79,9 @@ function initializeSectionAccordion() {
 // ======================================
 function initializeCertificationAccordion() {
     const certHeaders = document.querySelectorAll('.certification-header');
-    
+
     certHeaders.forEach(header => {
-        header.addEventListener('click', function() {
+        header.addEventListener('click', function () {
             const card = this.closest('.certification-card');
             card.classList.toggle('collapsed');
         });
@@ -98,20 +100,20 @@ function changeSlide(button, direction) {
     const slider = button.closest('.image-slider');
     const images = slider.querySelectorAll('.slider-image');
     const counter = slider.querySelector('.current-slide');
-    
+
     let currentIndex = 0;
     images.forEach((img, index) => {
         if (img.classList.contains('active')) {
             currentIndex = index;
         }
     });
-    
+
     images[currentIndex].classList.remove('active');
     currentIndex += direction;
-    
+
     if (currentIndex < 0) currentIndex = images.length - 1;
     if (currentIndex >= images.length) currentIndex = 0;
-    
+
     images[currentIndex].classList.add('active');
     counter.textContent = currentIndex + 1;
 
@@ -124,11 +126,11 @@ function changeSlide(button, direction) {
 // ======================================
 function initializeSkillCategories() {
     const skillCategories = document.querySelectorAll('.skill-category');
-    
+
     skillCategories.forEach(category => {
         const header = category.querySelector('h3');
         if (header) {
-            header.addEventListener('click', function() {
+            header.addEventListener('click', function () {
                 category.classList.toggle('collapsed');
             });
         }
@@ -139,12 +141,11 @@ function initializeSkillCategories() {
 // ページロード時の初期化
 // ======================================
 window.addEventListener('load', () => {
-    // 各アコーディオンの初期化
     initializeEventAccordion();
     initializeSectionAccordion();
     initializeCertificationAccordion();
     initializeSkillCategories();
-    
+
     // スライダーの初期化
     document.querySelectorAll('.image-slider').forEach(slider => {
         const images = slider.querySelectorAll('.slider-image');
