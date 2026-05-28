@@ -881,7 +881,6 @@ nav a:hover {
     gap: 20px;
 }
 
-/* 通常カード */
 .game-card {
     background: #0d0820;
     border: 1px solid rgba(0, 255, 255, 0.18);
@@ -900,14 +899,12 @@ nav a:hover {
     box-shadow: 0 10px 30px rgba(0, 255, 255, 0.08);
 }
 
-/* ── ピンク強調カード ── */
 .featured-game {
     border: 2px solid rgba(255, 60, 180, 0.7) !important;
     background: linear-gradient(160deg, #180a20 0%, #0e0820 100%) !important;
     box-shadow: 0 0 24px rgba(255, 60, 180, 0.18), 0 0 8px rgba(255, 0, 150, 0.1) !important;
 }
 
-/* 上部アクセントライン */
 .featured-game::before {
     content: '';
     display: block;
@@ -926,55 +923,17 @@ nav a:hover {
     transform: translateY(-5px);
 }
 
-.featured-game .card-title {
-    color: #ffccee;
-    text-shadow: 0 0 12px rgba(255, 60, 180, 0.6);
-}
+.featured-game .card-title { color: #ffccee; text-shadow: 0 0 12px rgba(255, 60, 180, 0.6); }
+.featured-game .card-tag { border-color: rgba(255, 60, 180, 0.45); color: rgba(255, 160, 220, 0.95); background: rgba(255, 60, 180, 0.06); }
+.featured-game .card-link { border-color: rgba(255, 60, 180, 0.45); color: #ff80d0; background: rgba(255, 60, 180, 0.08); }
+.featured-game .card-link:hover { background: rgba(255, 60, 180, 0.22); box-shadow: 0 0 14px rgba(255, 60, 180, 0.4); }
+.featured-game .card-highlights { border-color: rgba(255, 60, 180, 0.25); background: rgba(255, 60, 180, 0.04); }
+.featured-game .highlights-title { color: #ff80d0; }
+.featured-game .card-highlights li::before { color: #ff3cb4; }
+.featured-game .card-meta { border-left-color: rgba(255, 60, 180, 0.5); background: rgba(255, 60, 180, 0.04); }
+.featured-game .meta-label { color: #ff60c0; }
+.featured-game .card-role { color: rgba(255, 100, 180, 0.85); }
 
-.featured-game .card-tag {
-    border-color: rgba(255, 60, 180, 0.45);
-    color: rgba(255, 160, 220, 0.95);
-    background: rgba(255, 60, 180, 0.06);
-}
-
-.featured-game .card-link {
-    border-color: rgba(255, 60, 180, 0.45);
-    color: #ff80d0;
-    background: rgba(255, 60, 180, 0.08);
-}
-
-.featured-game .card-link:hover {
-    background: rgba(255, 60, 180, 0.22);
-    box-shadow: 0 0 14px rgba(255, 60, 180, 0.4);
-}
-
-.featured-game .card-highlights {
-    border-color: rgba(255, 60, 180, 0.25);
-    background: rgba(255, 60, 180, 0.04);
-}
-
-.featured-game .highlights-title {
-    color: #ff80d0;
-}
-
-.featured-game .card-highlights li::before {
-    color: #ff3cb4;
-}
-
-.featured-game .card-meta {
-    border-left-color: rgba(255, 60, 180, 0.5);
-    background: rgba(255, 60, 180, 0.04);
-}
-
-.featured-game .meta-label {
-    color: #ff60c0;
-}
-
-.featured-game .card-role {
-    color: rgba(255, 100, 180, 0.85);
-}
-
-/* ── カードサムネイル ── */
 .card-thumbnail {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -993,15 +952,9 @@ nav a:hover {
     display: block;
 }
 
-.card-thumbnail iframe {
-    pointer-events: none;
-}
+.card-thumbnail iframe { pointer-events: none; }
+.game-card:hover .card-thumbnail iframe { pointer-events: auto; }
 
-.game-card:hover .card-thumbnail iframe {
-    pointer-events: auto;
-}
-
-/* ── カード本体 ── */
 .card-body {
     padding: 16px 18px 18px;
     display: flex;
@@ -1018,12 +971,7 @@ nav a:hover {
     text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
 }
 
-.card-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 10px;
-}
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
 
 .card-tag {
     padding: 4px 10px;
@@ -1034,13 +982,7 @@ nav a:hover {
     background: rgba(0, 255, 255, 0.04);
 }
 
-.card-desc {
-    color: rgba(136, 221, 255, 0.75);
-    font-size: 0.82em;
-    line-height: 1.65;
-    margin-bottom: 12px;
-    flex: 1;
-}
+.card-desc { color: rgba(136, 221, 255, 0.75); font-size: 0.82em; line-height: 1.65; margin-bottom: 12px; flex: 1; }
 
 .card-meta {
     display: grid;
@@ -1054,14 +996,8 @@ nav a:hover {
     margin-bottom: 12px;
 }
 
-.meta-label {
-    color: #0099ff;
-    font-weight: bold;
-}
-
-.meta-value {
-    color: #88ddff;
-}
+.meta-label { color: #0099ff; font-weight: bold; }
+.meta-value { color: #88ddff; }
 
 .card-highlights {
     background: rgba(0, 153, 255, 0.05);
@@ -1071,17 +1007,8 @@ nav a:hover {
     margin-bottom: 12px;
 }
 
-.highlights-title {
-    color: #00ffff;
-    font-size: 0.8em;
-    font-weight: bold;
-    margin-bottom: 6px;
-}
-
-.card-highlights ul {
-    list-style: none;
-    padding: 0;
-}
+.highlights-title { color: #00ffff; font-size: 0.8em; font-weight: bold; margin-bottom: 6px; }
+.card-highlights ul { list-style: none; padding: 0; }
 
 .card-highlights li {
     color: #88ddff;
@@ -1090,27 +1017,9 @@ nav a:hover {
     position: relative;
 }
 
-.card-highlights li::before {
-    content: '◆';
-    position: absolute;
-    left: 0;
-    color: #0099ff;
-    font-size: 0.65em;
-    top: 4px;
-}
-
-.card-role {
-    color: rgba(0, 153, 255, 0.85);
-    font-size: 0.78em;
-    margin-bottom: 12px;
-}
-
-.card-links {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: auto;
-}
+.card-highlights li::before { content: '◆'; position: absolute; left: 0; color: #0099ff; font-size: 0.65em; top: 4px; }
+.card-role { color: rgba(0, 153, 255, 0.85); font-size: 0.78em; margin-bottom: 12px; }
+.card-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; }
 
 .card-link {
     display: inline-block;
@@ -1126,11 +1035,7 @@ nav a:hover {
     transition: all 0.2s;
 }
 
-.card-link:hover {
-    background: rgba(0, 255, 255, 0.2);
-    box-shadow: 0 0 12px rgba(0, 255, 255, 0.35);
-    transform: scale(1.05);
-}
+.card-link:hover { background: rgba(0, 255, 255, 0.2); box-shadow: 0 0 12px rgba(0, 255, 255, 0.35); transform: scale(1.05); }
 
 .award-badge {
     display: inline-flex;
@@ -1162,12 +1067,7 @@ footer {
     box-shadow: 0 0 40px rgba(0, 255, 255, 0.2);
 }
 
-.footer-text {
-    color: #0099ff;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-    font-size: 0.9em;
-}
+.footer-text { color: #0099ff; margin-bottom: 15px; letter-spacing: 2px; font-size: 0.9em; }
 
 /* ==============================
    レスポンシブ
@@ -1175,15 +1075,8 @@ footer {
 @media (max-width: 768px) {
     h1 { font-size: 2em; }
     .section-title { font-size: 1.2em; }
-    nav {
-        top: 10px;
-        right: 10px;
-        gap: 10px;
-    }
-    nav a {
-        padding: 10px 20px;
-        font-size: 0.75em;
-    }
+    nav { top: 10px; right: 10px; gap: 10px; }
+    nav a { padding: 10px 20px; font-size: 0.75em; }
     .games-grid { grid-template-columns: 1fr; }
     .profile-section { grid-template-columns: 1fr; }
     .video-modal-content { width: 95%; }
@@ -1194,4 +1087,155 @@ footer {
     .header-icon { width: 60px; height: 60px; }
     .header-title h1 { font-size: 1.6em; }
     .subtitle { font-size: 0.7em; letter-spacing: 1px; }
+}
+
+/* ==============================
+   クリック / タッチ 波紋エフェクト
+   ============================== */
+.ripple {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%) scale(0);
+    animation: rippleEffect 0.6s ease-out forwards;
+}
+
+@keyframes rippleEffect {
+    0%   { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* ==============================
+   分子構造 背景キャンバス
+   ============================== */
+#moleculeCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+}
+
+/* ==============================
+   外部活動 イベントカードグリッド
+   ============================== */
+.event-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.event-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    border: 2px solid rgba(0, 255, 255, 0.4);
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.06) 0%, rgba(0, 153, 255, 0.03) 100%);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.event-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, #00ffff, #0099ff);
+    border-radius: 4px 0 0 4px;
+}
+
+.event-card:hover {
+    border-color: rgba(0, 255, 255, 0.9);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.12) 0%, rgba(0, 153, 255, 0.08) 100%);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.3), 0 8px 24px rgba(0, 153, 255, 0.2);
+    transform: translateY(-4px);
+}
+
+.event-card-year {
+    font-size: 0.75em;
+    color: #0099ff;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 6px #0099ff;
+}
+
+.event-card-title {
+    font-size: 1em;
+    color: #00ffff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+    line-height: 1.4;
+}
+
+.event-card-role {
+    font-size: 0.78em;
+    color: #88ddff;
+    padding: 3px 10px;
+    border: 1px solid rgba(0, 153, 255, 0.4);
+    border-radius: 20px;
+    width: fit-content;
+    background: rgba(0, 153, 255, 0.08);
+}
+
+.event-card-desc {
+    font-size: 0.82em;
+    color: rgba(136, 221, 255, 0.75);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.event-card-award {
+    font-size: 0.8em;
+    color: #ffd700;
+    background: rgba(255, 200, 0, 0.08);
+    border: 1px solid rgba(255, 200, 0, 0.4);
+    border-radius: 5px;
+    padding: 3px 10px;
+    width: fit-content;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+.event-card-arrow {
+    font-size: 0.78em;
+    color: #0099ff;
+    margin-top: 4px;
+    letter-spacing: 1px;
+    transition: color 0.2s;
+}
+
+.event-card:hover .event-card-arrow {
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+/* 受賞カード（ピンク強調） */
+.featured-event-card {
+    border-color: rgba(255, 60, 180, 0.6) !important;
+    background: linear-gradient(135deg, rgba(255, 60, 180, 0.07) 0%, rgba(180, 0, 120, 0.03) 100%) !important;
+    box-shadow: 0 0 24px rgba(255, 60, 180, 0.15) !important;
+}
+
+.featured-event-card::before {
+    background: linear-gradient(180deg, #ff3cb4, #ff00ff) !important;
+}
+
+.featured-event-card:hover {
+    border-color: rgba(255, 60, 180, 1) !important;
+    box-shadow: 0 0 36px rgba(255, 60, 180, 0.35), 0 8px 24px rgba(200, 0, 150, 0.2) !important;
+}
+
+.featured-event-card .event-card-title {
+    color: #ffccee;
+    text-shadow: 0 0 10px rgba(255, 60, 180, 0.6);
 }
