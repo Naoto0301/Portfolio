@@ -240,10 +240,10 @@ h1 {
 }
 
 .subtitle {
-    color: #0099ff;
-    font-size: 1em;
+    color: #ffffff;
+    font-size: 2em;
     margin-bottom: 30px;
-    text-shadow: 0 0 10px #0099ff;
+    text-shadow: 0 0 10px #6cccff;
     letter-spacing: 2px;
     animation: float 3s ease-in-out infinite;
 }
@@ -1238,4 +1238,182 @@ footer {
 .featured-event-card .event-card-title {
     color: #ffccee;
     text-shadow: 0 0 10px rgba(255, 60, 180, 0.6);
+}
+
+/* ==============================
+   外部活動 大カード（2枚）
+   ============================== */
+.activity-cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    border: 2px solid rgba(0, 255, 255, 0.45);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.07) 0%, rgba(0, 153, 255, 0.03) 100%);
+    box-shadow: 0 0 24px rgba(0, 255, 255, 0.12);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 4px;
+    background: linear-gradient(90deg, #00ffff, #0099ff);
+}
+
+.activity-card:hover {
+    border-color: rgba(0, 255, 255, 0.95);
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.13) 0%, rgba(0, 153, 255, 0.08) 100%);
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.3), 0 10px 30px rgba(0, 153, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.activity-card-icon {
+    font-size: 2.4em;
+    line-height: 1;
+}
+
+.activity-card-title {
+    font-size: 1.3em;
+    color: #00ffff;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+.activity-card-desc {
+    font-size: 0.85em;
+    color: rgba(136, 221, 255, 0.8);
+    line-height: 1.7;
+    flex: 1;
+}
+
+.activity-card-count {
+    font-size: 0.78em;
+    color: #0099ff;
+    padding: 4px 14px;
+    border: 1px solid rgba(0, 153, 255, 0.45);
+    border-radius: 20px;
+    width: fit-content;
+    background: rgba(0, 153, 255, 0.08);
+    letter-spacing: 1px;
+}
+
+.activity-card-arrow {
+    font-size: 0.82em;
+    color: #0099ff;
+    letter-spacing: 1px;
+    transition: color 0.2s, text-shadow 0.2s;
+}
+
+.activity-card:hover .activity-card-arrow {
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+}
+
+@media (max-width: 600px) {
+    .activity-cards-grid { grid-template-columns: 1fr; }
+}
+
+/* ==============================
+   趣味カード
+   ============================== */
+.hobby-card {
+    margin-bottom: 20px;
+    border: 2px solid rgba(0, 255, 255, 0.4);
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.06) 0%, rgba(0, 153, 255, 0.02) 100%);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
+    transition: all 0.25s;
+}
+
+.hobby-card:hover {
+    border-color: rgba(0, 255, 255, 0.85);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.25);
+    transform: translateY(-3px);
+}
+
+.hobby-card-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px 28px;
+    background: rgba(0, 153, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.hobby-icon {
+    font-size: 1.8em;
+    line-height: 1;
+}
+
+.hobby-title {
+    font-size: 1.15em;
+    color: #00ffff;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+.hobby-card-body {
+    padding: 20px 28px;
+}
+
+.hobby-card-body p {
+    color: #88ddff;
+    font-size: 0.88em;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+.hobby-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.hobby-tag {
+    padding: 5px 14px;
+    border: 1px solid rgba(0, 255, 255, 0.35);
+    border-radius: 20px;
+    font-size: 0.78em;
+    color: rgba(0, 255, 255, 0.85);
+    background: rgba(0, 255, 255, 0.05);
+    letter-spacing: 1px;
+}
+
+.activity-card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #080018;
+}
+.activity-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+}
+.activity-card:hover .activity-card-thumb img {
+    transform: scale(1.05);
+}
+.activity-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px 28px;
 }
