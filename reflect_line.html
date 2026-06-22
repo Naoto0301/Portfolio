@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REFLECT LINE | 小田島直斗 ポートフォリオ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ========== 詳細ページ専用スタイル ========== */
+
+        /* ── ヘッダー上書き（詳細ページ用コンパクト版） ── */
+        header {
+            padding: 32px 20px 28px;
+        }
+        .detail-header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .detail-header-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .detail-header-eyebrow {
+            font-size: .72em;
+            color: rgba(0,255,255,.5);
+            letter-spacing: 4px;
+            margin-bottom: 4px;
+        }
+        .detail-header-title {
+            font-size: 2em;
+            color: #00ffff;
+            letter-spacing: 8px;
+            text-shadow: 0 0 20px rgba(0,255,255,.6);
+            animation: colorPulse 2s ease-in-out infinite;
+            margin: 0;
+        }
+        .detail-award-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,200,0,.08);
+            border: 1px solid rgba(255,200,0,.45);
+            border-radius: 6px;
+            padding: 6px 16px;
+            font-size: .8em;
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255,215,0,.5);
+            white-space: nowrap;
+        }
+        .detail-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .detail-tag {
+            padding: 4px 12px;
+            border: 1px solid rgba(255,60,180,.45);
+            border-radius: 4px;
+            font-size: .75em;
+            color: rgba(255,160,220,.95);
+            background: rgba(255,60,180,.06);
+        }
+
+        /* ── サイド目次 ── */
+        .side-toc {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 99;
+        }
+        .side-toc-inner {
+            background: rgba(10,0,20,.82);
+            border: 1px solid rgba(0,255,255,.25);
+            border-left: none;
+            border-radius: 0 10px 10px 0;
+            padding: 16px 18px 16px 14px;
+            backdrop-filter: blur(10px);
+        }
+        .side-toc-label {
+            color: #0099ff;
+            font-size: .68em;
+            letter-spacing: 3px;
+            margin-bottom: 12px;
+            text-shadow: 0 0 6px #0099ff;
+        }
+        .side-toc a {
+            display: block;
+            color: rgba(0,255,255,.55);
+            text-decoration: none;
+            font-size: .7em;
+            padding: 5px 0;
+            letter-spacing: 1px;
+            transition: color .2s, text-shadow .2s;
+            white-space: nowrap;
+            font-family: 'DotGothic16', monospace;
+        }
+        .side-toc a::before {
+            content: '▸ ';
+            color: rgba(0,153,255,.5);
+        }
+        .side-toc a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 8px rgba(0,255,255,.5);
+        }
+
+        /* ── セクション見出し ── */
+        .detail-section-heading {
+            font-size: 1.2em;
+            margin-bottom: 28px;
+            padding: 16px 24px;
+            border: 2px solid rgba(0,255,255,.4);
+            border-right-color: rgba(0,153,255,.6);
+            border-bottom-color: rgba(0,153,255,.6);
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255,0,150,.08) 0%, rgba(0,255,255,.1) 100%);
+            text-shadow: 0 0 16px #00ffff;
+            letter-spacing: 4px;
+            box-shadow: 0 0 20px rgba(0,255,255,.2);
+            color: #00ffff;
+        }
+        .detail-section-heading::before {
+            content: '// ';
+            color: rgba(0,153,255,.7);
+            font-size: .85em;
+        }
+
+        /* ── ネオン区切り線 ── */
+        .neon-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,255,255,.4), rgba(0,153,255,.4), transparent);
+            margin: 56px 0;
+            border: none;
+        }
+
+        /* ── パネル ── */
+        .detail-panel {
+            background: linear-gradient(135deg, rgba(0,255,255,.06) 0%, rgba(0,153,255,.02) 100%);
+            border: 1px solid rgba(0,255,255,.28);
+            border-radius: 14px;
+            padding: 26px 32px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 18px rgba(0,255,255,.07);
+        }
+        .detail-panel-title {
+            color: #00ffff;
+            font-size: .9em;
+            letter-spacing: 3px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0,255,255,.18);
+            text-shadow: 0 0 8px rgba(0,255,255,.4);
+        }
+        .detail-panel-title::before {
+            content: '◆ ';
+            color: #0099ff;
+            font-size: .7em;
+        }
+
+        /* ── 2カラム ── */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* ── 情報グリッド（メタ） ── */
+        .work-meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid rgba(0,255,255,.25);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .work-meta-item {
+            padding: 14px 18px;
+            border-right: 1px solid rgba(0,255,255,.2);
+            border-bottom: 1px solid rgba(0,255,255,.2);
+            background: rgba(0,255,255,.03);
+        }
+        .work-meta-item:nth-child(4n) { border-right: none; }
+        .work-meta-item:nth-last-child(-n+4) { border-bottom: none; }
+        .work-meta-item.span2 { grid-column: span 2; }
+        .work-meta-label {
+            color: #0099ff;
+            font-size: .72em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-shadow: 0 0 5px #0099ff;
+            letter-spacing: 2px;
+        }
+        .work-meta-value {
+            color: #88ddff;
+            font-size: .82em;
+            line-height: 1.5;
+        }
+
+        /* ── リスト ── */
+        .cyber-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .cyber-list li {
+            color: #88ddff;
+            font-size: .85em;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.7;
+        }
+        .cyber-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #0099ff;
+            font-size: .6em;
+            top: 5px;
+        }
+
+        /* ── アピールポイント（左ボーダー） ── */
+        .highlight-block {
+            border-left: 3px solid rgba(255,60,180,.7);
+            padding-left: 20px;
+        }
+        .highlight-block .cyber-list li::before {
+            color: #ff3cb4;
+        }
+
+        /* ── 動画埋め込み ── */
+        .embed-wrap {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid rgba(0,255,255,.25);
+            box-shadow: 0 0 20px rgba(0,255,255,.15);
+        }
+        .embed-wrap iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* ── 操作方法テーブル ── */
+        .operate-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .operate-table th {
+            background: rgba(0,153,255,.15);
+            color: #0099ff;
+            padding: 10px 16px;
+            border: 1px solid rgba(0,255,255,.22);
+            letter-spacing: 2px;
+            text-align: left;
+            font-size: .82em;
+            text-shadow: 0 0 5px #0099ff;
+        }
+        .operate-table td {
+            padding: 10px 16px;
+            border: 1px solid rgba(0,255,255,.12);
+            color: #88ddff;
+            font-size: .82em;
+            vertical-align: middle;
+        }
+        .key-badge {
+            display: inline-block;
+            background: rgba(0,255,255,.1);
+            border: 1px solid rgba(0,255,255,.4);
+            border-radius: 4px;
+            padding: 2px 8px;
+            color: #00ffff;
+            font-size: .85em;
+            margin: 2px;
+        }
+
+        /* ── ルール ステップ ── */
+        .rule-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .rule-step-num {
+            min-width: 34px;
+            height: 34px;
+            background: rgba(255,60,180,.12);
+            border: 1px solid rgba(255,60,180,.5);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff80d0;
+            font-size: .88em;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .rule-step-title {
+            color: #ffccee;
+            font-weight: bold;
+            font-size: .9em;
+            margin-bottom: 4px;
+            letter-spacing: 2px;
+        }
+        .rule-step-desc {
+            color: #88ddff;
+            font-size: .83em;
+            line-height: 1.75;
+        }
+        .kw  { color: #00ffff; font-weight: bold; }
+        .kw-pink { color: #ff80d0; font-weight: bold; }
+
+        /* ── 障害物カード ── */
+        .obstacle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+        }
+        .obstacle-card {
+            background: rgba(0,0,30,.6);
+            border: 1px solid rgba(0,255,255,.22);
+            border-radius: 10px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .obstacle-card:hover {
+            border-color: rgba(0,255,255,.6);
+            box-shadow: 0 0 14px rgba(0,255,255,.2);
+        }
+        .obstacle-icon {
+            font-size: 1.8em;
+            display: block;
+            filter: drop-shadow(0 0 6px rgba(0,255,255,.5));
+            margin-bottom: 6px;
+        }
+        .obstacle-name {
+            color: #88ddff;
+            font-size: .72em;
+            letter-spacing: 2px;
+        }
+
+        /* ── エピソード フロー ── */
+        .theme-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            margin: 20px auto;
+            max-width: 360px;
+        }
+        .theme-node {
+            background: rgba(0,20,50,.8);
+            border: 1px solid rgba(0,255,255,.35);
+            border-radius: 8px;
+            padding: 10px 24px;
+            color: #88ddff;
+            font-size: .83em;
+            letter-spacing: 2px;
+            text-align: center;
+            width: 100%;
+        }
+        .theme-node.input {
+            background: rgba(0,153,255,.1);
+            border-color: rgba(0,153,255,.55);
+            color: #00ffff;
+            font-weight: bold;
+        }
+        .theme-arrow {
+            color: rgba(0,255,255,.45);
+            font-size: 1.1em;
+            padding: 4px 0;
+            text-align: center;
+        }
+
+        /* ── リンクボタン ── */
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 26px;
+            background: rgba(255,60,180,.08);
+            border: 1px solid rgba(255,60,180,.5);
+            color: #ff80d0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: .85em;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transition: all .2s;
+        }
+        .link-btn:hover {
+            background: rgba(255,60,180,.22);
+            box-shadow: 0 0 16px rgba(255,60,180,.4);
+            transform: scale(1.04);
+        }
+
+        /* ── こだわりフロー番号 ── */
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+        }
+        .flow-num {
+            min-width: 28px;
+            height: 28px;
+            background: rgba(0,153,255,.15);
+            border: 1px solid rgba(0,153,255,.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #88ccff;
+            font-size: .75em;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .side-toc { display: none; }
+            .two-col { grid-template-columns: 1fr; }
+            .work-meta { grid-template-columns: 1fr 1fr; }
+            .work-meta-item:nth-child(4n) { border-right: 1px solid rgba(0,255,255,.2); }
+            .work-meta-item:nth-child(2n) { border-right: none; }
+            .work-meta-item.span2 { grid-column: span 2; }
+            .detail-panel { padding: 18px 18px; }
+            .detail-header-title { font-size: 1.4em; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="moleculeCanvas"></canvas>
+
+    <!-- ヘッダー -->
+    <header>
+        <div class="detail-header-inner">
+            <div class="detail-header-left">
+                <img src="img/アイコン.png" alt="アイコン" class="header-icon" style="width:70px;height:70px;">
+                <div>
+                    <div class="detail-header-eyebrow">GAME WORKS</div>
+                    <h1 class="detail-header-title">REFLECT LINE</h1>
+                    <div class="detail-tags">
+                        <span class="detail-tag">DXlib</span>
+                        <span class="detail-tag">C++</span>
+                        <span class="detail-tag">2D Action</span>
+                        <span class="detail-tag">2人制作</span>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-award-badge">🏆 第14回 全国専門学校ゲームコンペティション「アイデア賞」受賞</div>
+        </div>
+    </header>
+
+    <!-- ナビ（戻るだけ） -->
+    <nav>
+        <a href="portfolio.html">← 作品一覧</a>
+    </nav>
+
+    <!-- サイド目次 -->
+    <aside class="side-toc">
+        <div class="side-toc-inner">
+            <div class="side-toc-label">// 目次 //</div>
+            <a href="#overview">概要</a>
+            <a href="#video">紹介動画</a>
+            <a href="#operate">操作方法</a>
+            <a href="#rule">ルール</a>
+            <a href="#episode">苦労したエピソード</a>
+            <a href="#commitment">こだわりポイント</a>
+        </div>
+    </aside>
+
+    <div class="container">
+
+        <!-- ==================== 概要 ==================== -->
+        <section id="overview" class="section">
+            <h2 class="detail-section-heading">概要</h2>
+
+            <div class="detail-panel">
+                <p style="color:#88ddff;font-size:.9em;line-height:1.9;">
+                    レーザーや障害物を避ける2Dアクションゲーム。アイテムを取ると<span class="kw-pink">反射モード</span>が発動し、受けたレーザーを跳ね返して隕石に追尾・破壊、スコアを稼いでハイスコア更新を目指す作品です。<br>
+                    <span class="kw">「アイデア賞」</span>を受賞した代表作で、ゲームロジック・UI・演出まですべてコーディングで実装しました。
+                </p>
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">作品情報</div>
+                <div class="work-meta">
+                    <div class="work-meta-item">
+                        <div class="work-meta-label">制作環境</div>
+                        <div class="work-meta-value">DXlib / C++</div>
+                    </div>
+                    <div class="work-meta-item">
+                        <div class="work-meta-label">制作期間</div>
+                        <div class="work-meta-value">2025/4 〜 2025/10<br><small style="color:rgba(136,221,255,.6);">（約半年間）</small></div>
+                    </div>
+                    <div class="work-meta-item">
+                        <div class="work-meta-label">制作人数</div>
+                        <div class="work-meta-value">2人</div>
+                    </div>
+                    <div class="work-meta-item">
+                        <div class="work-meta-label">プラットフォーム</div>
+                        <div class="work-meta-value">Windows</div>
+                    </div>
+                    <div class="work-meta-item">
+                        <div class="work-meta-label">ジャンル</div>
+                        <div class="work-meta-value">反撃型回避アクション</div>
+                    </div>
+                    <div class="work-meta-item">
+                        <div class="work-meta-label">プレイ人数</div>
+                        <div class="work-meta-value">1人</div>
+                    </div>
+                    <div class="work-meta-item span2">
+                        <div class="work-meta-label">受賞</div>
+                        <div class="work-meta-value">第14回 全国専門学校ゲームコンペティション「アイデア賞」</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-col">
+                <div class="detail-panel">
+                    <div class="detail-panel-title">目的</div>
+                    <ul class="cyber-list">
+                        <li>ゲーム進行・アニメーション・オブジェクト管理などをC++で実装し、コーディング力を高める</li>
+                        <li>オブジェクト指向設計への理解を深め、クラスを活用したゲーム開発を行う</li>
+                    </ul>
+                </div>
+                <div class="detail-panel">
+                    <div class="detail-panel-title">担当箇所</div>
+                    <ul class="cyber-list">
+                        <li>基盤システム・プレイヤー全体移動処理</li>
+                        <li>アイテム・レーザー反射処理</li>
+                        <li>障害物システム（通常レーザー・直線レーザー・反射レーザー・波紋・花火）</li>
+                        <li>メニュー画面の作成</li>
+                        <li>企画</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">アピールポイント</div>
+                <div class="highlight-block">
+                    <ul class="cyber-list">
+                        <li>プレイヤー全体移動処理の実装</li>
+                        <li>レーザー反射処理の独自アルゴリズム</li>
+                        <li>直線レーザーのプレイヤー目線</li>
+                        <li>波紋障害物の作成・使いやすいクラス設計</li>
+                        <li>花火の物理法則処理</li>
+
+                    </ul>
+                </div>
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">リンク</div>
+                <a href="https://github.com/Naoto0301/2GM_shinkyu_z01" target="_blank" class="link-btn">⬡ GitHub</a>
+            </div>
+        </section>
+
+        <hr class="neon-divider">
+
+        <!-- ==================== 紹介動画 ==================== -->
+        <section id="video" class="section">
+            <h2 class="detail-section-heading">紹介動画</h2>
+            <div class="detail-panel">
+                <div class="embed-wrap">
+                    <iframe src="https://www.youtube.com/embed/5QUpdI0Ifis" allowfullscreen loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <hr class="neon-divider">
+
+        <!-- ==================== 操作方法 ==================== -->
+        <section id="operate" class="section">
+            <h2 class="detail-section-heading">操作方法</h2>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">キーボード</div>
+                <table class="operate-table">
+                    <tr>
+                        <th>操作</th>
+                        <th>キー</th>
+                    </tr>
+                    <tr>
+                        <td>移動（上下左右）</td>
+                        <td>
+                            <span class="key-badge">W</span>
+                            <span class="key-badge">A</span>
+                            <span class="key-badge">S</span>
+                            <span class="key-badge">D</span>
+                            &nbsp;または&nbsp;
+                            <span class="key-badge">↑</span>
+                            <span class="key-badge">←</span>
+                            <span class="key-badge">↓</span>
+                            <span class="key-badge">→</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">コントローラー / アーケード筐体</div>
+                <p style="color:#88ddff;font-size:.88em;line-height:1.8;">
+                    Xbox コントローラーに対応しています。<br>
+                    また、学内に設置されているアーケード筐体にも対応しました。
+                </p>
+            </div>
+        </section>
+
+        <hr class="neon-divider">
+
+        <!-- ==================== ルール ==================== -->
+        <section id="rule" class="section">
+            <h2 class="detail-section-heading">ルール</h2>
+
+            <div class="detail-panel">
+                <p style="color:#88ddff;font-size:.88em;line-height:1.85;margin-bottom:28px;">
+                    以下のサイクルをゲームオーバーになるまで繰り返す<span class="kw">エンドレスゲーム</span>です。最終スコアでハイスコアを競います。
+                </p>
+
+                <div class="rule-step">
+                    <div class="rule-step-num">1</div>
+                    <div>
+                        <div class="rule-step-title">避ける</div>
+                        <div class="rule-step-desc">障害物に当たると即ゲームオーバー。<span class="kw">青いもの</span>が障害物の特徴です。</div>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="rule-step-num">2</div>
+                    <div>
+                        <div class="rule-step-title">取る</div>
+                        <div class="rule-step-desc">上から降ってくるアイテムを取ると、反射モードに変化。画面が<span class="kw-pink">ピンク色</span>になると反射モード発動中のサインです。</div>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="rule-step-num">3</div>
+                    <div>
+                        <div class="rule-step-title">反射</div>
+                        <div class="rule-step-desc">反射モード中は、レーザー系の障害物に当たると跳ね返します。反射モードには制限時間があります。</div>
+                    </div>
+                </div>
+                <div class="rule-step">
+                    <div class="rule-step-num">4</div>
+                    <div>
+                        <div class="rule-step-title">壊す</div>
+                        <div class="rule-step-desc">反射したレーザーは、近くの隕石に自動で追尾します。隕石に命中すると破壊し、スコアを獲得できます。</div>
+                    </div>
+                </div>
+
+                <p style="color:#88ddff;font-size:.85em;margin-top:8px;">
+                    これらのルールは、ゲーム本編の<span class="kw">「チュートリアル」</span>から確認できます。
+                </p>
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">障害物一覧</div>
+                <p style="color:#88ddff;font-size:.85em;margin-bottom:18px;">一度でも当たるとゲームオーバーになります。</p>
+                <div class="obstacle-grid">
+                    <div class="obstacle-card">
+                        <span class="obstacle-icon">〜</span>
+                        <div class="obstacle-name">追尾レーザー</div>
+                    </div>
+                    <div class="obstacle-card">
+                        <span class="obstacle-icon">━</span>
+                        <div class="obstacle-name">直線レーザー</div>
+                    </div>
+                    <div class="obstacle-card">
+                        <span class="obstacle-icon">◎</span>
+                        <div class="obstacle-name">波紋</div>
+                    </div>
+                    <div class="obstacle-card">
+                        <span class="obstacle-icon">✦</span>
+                        <div class="obstacle-name">花火</div>
+                    </div>
+                    <div class="obstacle-card">
+                        <span class="obstacle-icon">⬡</span>
+                        <div class="obstacle-name">隕石</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="neon-divider">
+
+        <!-- ==================== 苦労したエピソード ==================== -->
+        <section id="episode" class="section">
+            <h2 class="detail-section-heading">苦労したエピソード</h2>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">「反射」に辿り着いた経緯</div>
+
+                <p style="color:#88ddff;font-size:.88em;line-height:1.9;">
+                    ゲームの面白さを学ぶ授業で、<span class="kw">「さける」「とる」「こわす」</span>の3つのお題が出されました。<br>
+                    開発当初は、特に<span class="kw">「こわす」</span>要素をどのようにゲームに落とし込むかに悩みました。
+                </p>
+
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:24px 0;">
+                    <div class="theme-flow">
+                        <div class="theme-node input">テーマ：さける</div>
+                        <div class="theme-arrow">↓</div>
+                        <div class="theme-node">障害物を避ける</div>
+                    </div>
+                    <div class="theme-flow">
+                        <div class="theme-node input">テーマ：とる</div>
+                        <div class="theme-arrow">↓</div>
+                        <div class="theme-node">アイテムを取る</div>
+                    </div>
+                </div>
+
+                <p style="color:#88ddff;font-size:.88em;line-height:1.9;margin-bottom:14px;">制作を進める中で次の課題が生まれました。</p>
+                <ul class="cyber-list" style="margin-bottom:20px;">
+                    <li>アイテムを取った後、どのような変化が起きるのか</li>
+                    <li>何を、どのような目的で<span class="kw">「こわす」</span>のか</li>
+                </ul>
+
+                <p style="color:#88ddff;font-size:.88em;line-height:1.9;margin-bottom:20px;">
+                    チームで議論を重ねた結果、<span class="kw">「反射」</span>というアイデアを採用しました。<br>
+                    避けるべき障害物にあえて当たり、レーザーを反射して隕石を壊すことで<span class="kw">駆け引き</span>が生まれ、ゲーム性が明確になりました。
+                </p>
+
+                <ul class="cyber-list" style="margin-bottom:24px;">
+                    <li>アイテムを取ると、一部の障害物が反射可能になる</li>
+                    <li>避けるべき障害物にあえて当たり、反射して別の障害物を壊す</li>
+                    <li>壊した数に応じてスコアを獲得できるが、一度でも当たるとゲームオーバー</li>
+                </ul>
+
+                <div class="theme-flow" style="max-width:440px;margin:0 auto;">
+                    <div class="theme-node input">テーマ：こわす</div>
+                    <div class="theme-arrow">↓</div>
+                    <div class="theme-node">隕石を壊す</div>
+                    <div class="theme-arrow">↓</div>
+                    <div class="theme-node">レーザーが命中すると壊れる</div>
+                    <div class="theme-arrow">↓</div>
+                    <div class="theme-node">アイテムの効果でレーザーを跳ね返す</div>
+                </div>
+
+                <p style="color:#88ddff;font-size:.86em;line-height:1.9;margin-top:24px;">
+                    展示会では狙い通り高評価を得られ、多くの来場者に繰り返しプレイしていただきました。
+                </p>
+            </div>
+        </section>
+
+        <hr class="neon-divider">
+
+        <!-- ==================== こだわりポイント ==================== -->
+        <section id="commitment" class="section">
+            <h2 class="detail-section-heading">こだわりポイント</h2>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">ネオン風のデザイン</div>
+                <p style="color:#88ddff;font-size:.88em;line-height:1.9;">
+                    <span class="kw">「きれい × かっこいい」</span>をコンセプトにした個性的なデザインです。<br>
+                    <span class="kw">青色</span>と<span class="kw-pink">ピンク色</span>の対比が特徴で、通常モードは青、反射モードはピンクと画面全体の色調が切り替わります。<br>
+                    レーザーは痕跡が残像のように残り、徐々に薄くなって色が変化するのもこだわりです。
+                </p>
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">「動き」を作るアニメーション</div>
+                <p style="color:#88ddff;font-size:.88em;line-height:1.9;">
+                    ゲームには、常に動いているものがないと寂しく感じます。<br>
+                    そのため、画面の至る所で常に動きが出るよう多数のアニメーションを実装しています。<br>
+                    レベルアップ演出・ゲームオーバー演出など、節目ごとに印象的な動きを持たせました。
+                </p>
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">花火の物理法則処理</div>
+                <p style="color:#88ddff;font-size:.88em;line-height:1.9;margin-bottom:18px;">
+                  出現する際レーザーに火花が飛び散る演出・物理法則を考慮した動きを再現しました
+            </div>
+
+            <div class="detail-panel">
+                <div class="detail-panel-title">隕石をこわす爽快感</div>
+                <p style="color:#88ddff;font-size:.88em;line-height:1.9;">
+                    <span class="kw">「ガラスを壊す」</span>ような破片の演出と効果音を取り入れています。<br>
+                    現実ではガラスを壊すことはあまりありません。ゲームならではの爽快感を表現するため、このような演出を採用しています。
+                </p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p class="footer-text">▓▓▓ portfolio Naoto ▓▓▓</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゲーム作品紹介 | 小田島直斗 ポートフォリオ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* ========== works専用レイアウト ========== */
+        .work-entry {
+            margin-bottom: 80px;
+            border: 2px solid rgba(0,255,255,.45);
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0,255,255,.07) 0%, rgba(0,153,255,.03) 100%);
+            box-shadow: 0 0 24px rgba(0,255,255,.15);
+            position: relative;
+        }
+        .work-entry.featured {
+            border-color: rgba(255,60,180,.7);
+            background: linear-gradient(160deg, #180a20 0%, #0e0820 100%);
+            box-shadow: 0 0 32px rgba(255,60,180,.2), 0 0 12px rgba(255,0,150,.1);
+        }
+        .work-entry.featured::before {
+            content: '';
+            display: block;
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(90deg, #ff3cb4, #ff00ff, #c000ff);
+        }
+        /* サムネイル */
+        .work-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #080018;
+            overflow: hidden;
+        }
+        .work-thumb img,
+        .work-thumb iframe {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            display: block;
+        }
+        /* 本文エリア */
+        .work-body {
+            padding: 36px 40px 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        /* タイトル行 */
+        .work-title-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .work-title {
+            font-size: 1.6em;
+            color: #00ffff;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-shadow: 0 0 16px rgba(0,255,255,.6);
+        }
+        .work-entry.featured .work-title {
+            color: #ffccee;
+            text-shadow: 0 0 16px rgba(255,60,180,.6);
+        }
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .work-tag {
+            padding: 4px 12px;
+            border: 1px solid rgba(0,255,255,.35);
+            border-radius: 4px;
+            font-size: .78em;
+            color: rgba(0,255,255,.85);
+            background: rgba(0,255,255,.05);
+        }
+        .work-entry.featured .work-tag {
+            border-color: rgba(255,60,180,.45);
+            color: rgba(255,160,220,.95);
+            background: rgba(255,60,180,.06);
+        }
+        /* 受賞バッジ */
+        .work-award {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,200,0,.08);
+            border: 1px solid rgba(255,200,0,.45);
+            border-radius: 6px;
+            padding: 5px 14px;
+            font-size: .82em;
+            color: #ffd700;
+            width: fit-content;
+            text-shadow: 0 0 8px rgba(255,215,0,.5);
+        }
+        /* 説明文 */
+        .work-desc {
+            color: rgba(136,221,255,.85);
+            font-size: .9em;
+            line-height: 1.85;
+        }
+        /* メタ情報グリッド */
+        .work-meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border: 1px solid rgba(0,255,255,.25);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .work-meta-item {
+            padding: 14px 18px;
+            border-right: 1px solid rgba(0,255,255,.2);
+            border-bottom: 1px solid rgba(0,255,255,.2);
+        }
+        .work-meta-item:nth-child(4n) { border-right: none; }
+        .work-meta-item:nth-last-child(-n+4) { border-bottom: none; }
+        .work-meta-label {
+            color: #0099ff;
+            font-size: .75em;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-shadow: 0 0 5px #0099ff;
+        }
+        .work-meta-value {
+            color: #88ddff;
+            font-size: .82em;
+        }
+        /* アピールポイント */
+        .work-highlights {
+            border-left: 3px solid #0099ff;
+            padding-left: 20px;
+        }
+        .work-entry.featured .work-highlights {
+            border-left-color: rgba(255,60,180,.7);
+        }
+        .work-highlights-title {
+            color: #00ffff;
+            font-size: .88em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        .work-entry.featured .work-highlights-title {
+            color: #ff80d0;
+        }
+        .work-highlights ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .work-highlights li {
+            color: #88ddff;
+            font-size: .85em;
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.6;
+        }
+        .work-highlights li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: #0099ff;
+            font-size: .65em;
+            top: 4px;
+        }
+        .work-entry.featured .work-highlights li::before {
+            color: #ff3cb4;
+        }
+        /* 役割 */
+        .work-role {
+            color: rgba(0,153,255,.9);
+            font-size: .85em;
+            line-height: 1.7;
+        }
+        .work-entry.featured .work-role {
+            color: rgba(255,100,180,.9);
+        }
+        /* リンク */
+        .work-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .work-link {
+            display: inline-block;
+            padding: 10px 22px;
+            background: rgba(0,255,255,.08);
+            border: 1px solid rgba(0,255,255,.4);
+            color: #00ffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: .82em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all .2s;
+        }
+        .work-link:hover {
+            background: rgba(0,255,255,.22);
+            box-shadow: 0 0 14px rgba(0,255,255,.4);
+            transform: scale(1.04);
+        }
+        .work-entry.featured .work-link {
+            border-color: rgba(255,60,180,.5);
+            color: #ff80d0;
+            background: rgba(255,60,180,.08);
+        }
+        .work-entry.featured .work-link:hover {
+            background: rgba(255,60,180,.22);
+            box-shadow: 0 0 14px rgba(255,60,180,.4);
+        }
+        /* 区切り線 */
+        .work-divider {
+            border: none;
+            border-top: 1px solid rgba(0,255,255,.15);
+            margin: 0;
+        }
+        @media (max-width: 768px) {
+            .work-body { padding: 24px 20px 28px; }
+            .work-meta { grid-template-columns: 1fr 1fr; }
+            .work-meta-item:nth-child(2n) { border-right: none; }
+            .work-meta-item:nth-child(4n) { border-right: 1px solid rgba(0,255,255,.2); }
+            .work-meta-item:nth-child(2n):not(:last-child) { border-right: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="moleculeCanvas"></canvas>
+
+    <header>
+        <div class="header-content">
+            <div class="header-title">
+                <img src="img/アイコン.png" alt="ゲームアイコン" class="header-icon">
+                <h1>ゲーム作品紹介</h1>
+            </div>
+            <p class="subtitle">// 制作したゲーム作品一覧 //</p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="portfolio.html">← トップへ戻る</a>
+    </nav>
+
+    <div class="container">
+        <section class="section">
+            <h2 class="section-title">[ ゲーム作品紹介 ]</h2>
+
+            <!-- ==================== REFLECT LINE ==================== -->
+            <div id="reflect" class="work-entry featured">
+                <div class="work-thumb">
+                    <iframe src="https://www.youtube.com/embed/5QUpdI0Ifis" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="work-body">
+                    <div class="work-title-row">
+                        <div class="work-title">REFLECT LINE</div>
+                        <div class="work-tags">
+                            <span class="work-tag">DXlib</span>
+                            <span class="work-tag">C++</span>
+                            <span class="work-tag">2D Action</span>
+                        </div>
+                    </div>
+                    <p class="work-desc">レーザーや障害物を避ける2Dアクションゲーム！アイテムを取ると反射モードが発動し、受けたレーザーを跳ね返して隕石に追尾・破壊、スコアを稼いでハイスコア更新を目指すゲームです。</p>
+                    <div class="work-meta">
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">制作環境</div>
+                            <div class="work-meta-value">DXlib</div>
+                        </div>
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">制作期間</div>
+                            <div class="work-meta-value">2025/4/21〜</div>
+                        </div>
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">制作人数</div>
+                            <div class="work-meta-value">2人</div>
+                        </div>
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">プラットフォーム</div>
+                            <div class="work-meta-value">Windows</div>
+                        </div>
+                    </div>
+                    <hr class="work-divider">
+                    <div class="work-highlights">
+                        <div class="work-highlights-title">▍アピールポイント</div>
+                        <ul>
+                            <li>プレイヤー全体移動処理</li>
+                            <li>レーザー反射処理</li>
+                            <li>波紋障害物の作成・使いやすいクラス設計</li>
+                        </ul>
+                    </div>
+                    <p class="work-role"><strong>役割:</strong> 基盤システム・プレイヤー・アイテム・障害物システム（通常レーザー、直線レーザー、反射レーザー、波紋、花火）を担当</p>
+                    <div class="work-links">
+                        <a href="https://github.com/Naoto0301/2GM_shinkyu_z01" target="_blank" class="work-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== Gunaction ==================== -->
+            <div id="gunaction" class="work-entry featured">
+                <div class="work-thumb">
+                    <img src="img/展示画像.png" alt="Gunaction メイン画像" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <div class="work-title-row">
+                        <div class="work-title">Gunaction</div>
+                        <div class="work-tags">
+                            <span class="work-tag">UE5</span>
+                            <span class="work-tag">C++</span>
+                            <span class="work-tag">3D Action</span>
+                        </div>
+                    </div>
+                    <p class="work-desc">Unreal Engine 5を使用した3Dアクションゲーム。銃と剣を駆使して敵を倒す本格アクション。現在開発中。</p>
+                    <div class="work-meta">
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">制作環境</div>
+                            <div class="work-meta-value">UE5 / C++</div>
+                        </div>
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">制作期間</div>
+                            <div class="work-meta-value">2025/10〜開発中</div>
+                        </div>
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">制作人数</div>
+                            <div class="work-meta-value">2人</div>
+                        </div>
+                        <div class="work-meta-item">
+                            <div class="work-meta-label">プラットフォーム</div>
+                            <div class="work-meta-value">Windows</div>
+                        </div>
+                    </div>
+                    <hr class="work-divider">
+                    <div class="work-highlights">
+                        <div class="work-highlights-title">▍アピールポイント</div>
+                        <ul>
+                            <li>UE5 / C++ ネイティブ実装</li>
+                            <li>プレイヤー移動処理・アニメーション設定</li>
+                            <li>マップ制作</li>
+                        </ul>
+                    </div>
+                    <p class="work-role"><strong>役割:</strong> playerの移動処理・アニメーション設定・マップ制作を担当</p>
+                    <div class="work-links">
+                        <a href="https://github.com/Naoto0301/2GM_shinkyu_kouki02" target="_blank" class="work-link">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== 地獄少女神回避 ==================== -->
+            <div id="jigoku" class="work-entry">
+                <div class="work-thumb">
+                    <img src="img/地獄少女.png" alt="地獄少女神回避" loading="lazy">
+                </div>
+                <div class="work-body">
+                    <div class="work-title-row">
+                        <div class="work-title">地獄少女神回避</div>
+                        <div class="work-tags">
+                            <span class="work-tag">Unity</span>
+                            <span class="work-tag">C#</span>
+                            <span class="work-tag">2D Action</span>
+                        </div>
+                    </div>
+                    <div class="work-award">🏆 優秀賞</div>
+                    <p class="work-desc">3日間のゲームジャムで6人チームが制作。ギリギリで避けながら進む2Dアクションゲーム。</p>
+                    <p class="work-role"><strong>役割:</strong> playerを担当</p>
+                </div>
+            </div>
+
+            <!-- ==================== 帰宅侍 ==================== -->
+            <div id="kitaku" class="work-entry">
+                <div class="work-thumb">
+                    <iframe src="https://www.youtube.com/embed/jAy3YGec2mI" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="work-body">
+                    <div class="work-title-row">
+                        <div class="work-title">帰宅侍</div>
+                        <div class="work-tags">
+                            <span class="work-tag">Unity</span>
+                            <span class="work-tag">C#</span>
+                            <span class="work-tag">2D Action</span>
+                        </div>
+                    </div>
+                    <p class="work-desc">ワイヤーアクションと剣術で敵を倒す2D横スクロールアクション。1人で全処理を実装。</p>
+                    <hr class="work-divider">
+                    <div class="work-highlights">
+                        <div class="work-highlights-title">▍アピールポイント</div>
+                        <ul>
+                            <li>ワイヤー移動</li>
+                            <li>わかりやすいコード</li>
+                            <li>UI処理</li>
+                        </ul>
+                    </div>
+                    <p class="work-role"><strong>役割:</strong> プレイヤー・ワイヤー・攻撃・敵・UI処理すべて担当</p>
+                    <div class="work-links">
+                        <a href="https://unityroom.com/games/kitaku" target="_blank" class="work-link">Unityルームでプレイ</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== PENTACORE ==================== -->
+            <div id="pentacore" class="work-entry">
+                <div class="work-thumb">
+                    <iframe src="https://www.youtube.com/embed/ErcRpzGMLGE" allowfullscreen loading="lazy"></iframe>
+                </div>
+                <div class="work-body">
+                    <div class="work-title-row">
+                        <div class="work-title">PENTACORE</div>
+                        <div class="work-tags">
+                            <span class="work-tag">Unity</span>
+                            <span class="work-tag">C#</span>
+                            <span class="work-tag">2D Action</span>
+                        </div>
+                    </div>
+                    <div class="work-award">🏆 最優秀賞</div>
+                    <p class="work-desc">3日間のゲームジャムで5人チームが制作した2Dアクション。</p>
+                    <p class="work-role"><strong>役割:</strong> ステージ3内の全体の処理</p>
+                    <div class="work-links">
+                        <a href="https://unityroom.com/games/pentacore" target="_blank" class="work-link">Unityルームでプレイ</a>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <footer>
+        <p class="footer-text">▓▓▓ portfolio ▓▓▓</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.addEventListener('load', function () {
+            const hash = window.location.hash;
+            if (hash) {
+                const target = document.querySelector(hash);
+                if (target) {
+                    target.style.borderColor = '#ffff00';
+                    target.style.boxShadow = '0 0 30px rgba(255,255,0,0.4)';
+                    setTimeout(function () {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
